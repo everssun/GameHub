@@ -22,24 +22,26 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
   if (isLoading) return <Spinner></Spinner>;
 
   return (
-    <List.Root>
+    <List.Root gap={3}>
       {data.map((genre) => (
-        <List.Root key={genre.id} paddingY="5px">
+        <List.Item key={genre.id} paddingY="5px">
           <HStack>
             <Image
               boxSize="32px"
               borderRadius={8}
               src={getCroppedImageUrl(genre.image_background)}
+              alt={genre.name}
             ></Image>
             <Link
               fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
               onClick={() => onSelectGenre(genre)}
               fontSize="lg"
+              _hover={{ textDecoration: "underline" }}
             >
               {genre.name}
             </Link>
           </HStack>
-        </List.Root>
+        </List.Item>
       ))}
     </List.Root>
   );
